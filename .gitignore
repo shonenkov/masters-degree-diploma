@@ -1,0 +1,11 @@
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+*.log
+*.blg
+*.log
+*.blg
+*.aux
+*.bbl
+*.out
+.idea
