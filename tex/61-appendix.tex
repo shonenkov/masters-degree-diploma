@@ -8,7 +8,7 @@
 
 \begin{small}
 \begin{verbatim}
-###############################################################################
+#########################################################################
 # PK4 EAC SW -- Spectrometer
 # started   2016-10-12'13:57:45.58 ~
 # HPC=7679703032397 / HPCFreq=1496280000 Hz => HPC uptime = 5132.530698 s
@@ -33,11 +33,13 @@
    8:   491
    9:  1729
 ………..
+………..
 1022:   537
 1023:   623
 1024:   557
 1025:   493
 1026:   525
+………..
 ………..
 2038:   506
 2039:   578
@@ -53,9 +55,72 @@
 #=== spectrum === read-out time = 2.172 s
 # ended     2016-10-12'13:57:45.63 ~ (execution time = 0.051892 s)
 # PK4 EAC SW -- Spectrometer
-###############################################################################
+#########################################################################
 \end{verbatim}
 \end{small}
 
 \section{Приложение Б}
 \label{app:app2}
+Пример записей логгера в эксперименте.
+
+\begin{small}
+\begin{verbatim}
+Log Start: 04.06.2015 13:52:47
+13:56:24 User and Reason: CADMOS OPS/CNES/PK4 commissioning
+13:56:24 Opening Parameter File
+13:56:26 readParameterFile: Read 1576 key-value-pairs from Parameter File
+13:56:28 setOpMode: Detected IBP actual machine state OP_PUMPING.
+...      Requesting for new machine state OP_MINIMAL.
+13:56:28 checkMod01Operative: Starting to check if Module 02-Power
+...      is operative
+13:56:31 M01_temperature_cm01 measured 27.100 expected 30 abs-diff 2.900
+...      ranges -20 +20 all [°C] result: ok
+13:56:31 M01_Vin_M02_off measured 23.975 expected 24 abs-diff 0.025
+...      ranges -2 +1.5 all [V] result: ok
+13:56:32 M01_Vout_M02_off measured 0.000 expected 0 abs-diff 0.000
+...      ranges -0 +0.1 all [V] result: ok
+13:56:32 M01_current_M02_off measured 0.001 expected 0.002 abs-diff 0.001
+...      ranges -0.002 +0.002 all [A] result: ok
+13:56:32 M01_Vin_M03_off measured 23.950 expected 24 abs-diff 0.050 ranges
+...      -2 +1.5 all [V] result: ok
+13:56:32 M01_Vout_M03_off measured 0.000 expected 0 abs-diff 0.000 ranges
+...      -0 +0.1 all [V] result: ok
+13:56:32 M01_current_M03_off measured 0.001 expected 0.002 abs-diff 0.001
+...      ranges -0.002 +0.002 all [A] result: ok
+13:56:32 M01_Vin_M04_off measured 23.975 expected 24 abs-diff 0.025 ranges
+...      -2 +1.5 all [V] result: ok
+………..
+………..
+
+15:25:04 TrapAndManipulate : begin flushing
+15:25:04 setFlushing: Flushing with 10sccm for 10 seconds
+15:25:04 setIQF200GasFlow: Changing IQF200 Gasflow to 10sccm.
+15:25:04 setIQF200ValveMode: Changing ValveMode to 2
+15:25:14 setIQF200GasFlow: Changing IQF200 Gasflow
+...      to 0.0231250002980232sccm.
+15:25:14 setIQF200ValveMode: Changing ValveMode to 2
+15:25:14 TrapAndManipulate : end flushing
+15:25:14 TrapAndManipulate : standby with gasflow 0.5 sccm for 10 s
+15:25:14 setIQF200GasFlow: Changing IQF200 Gasflow to 0.5sccm.
+15:25:14 setIQF200ValveMode: Changing ValveMode to 2
+15:25:26 *** end trapping ***
+15:25:26 *** GasJet 3 Dispenser setting cycle 6 ***
+15:25:26 setIQP600Pressure: old IQP600 pressure is 300mbar.
+...      Trying to set 300mbar
+15:25:26 setGRValveMode : duration for sending open command:
+...      5.01350212097168
+15:25:26 setGRValveMode: Changing GR-ValveMode to 0
+………..
+………..
+17:11:51 saveChamberEvacuation: Finished with evacuating Chamber
+17:11:52 setGRValveMode : duration for sending open command:
+...      5.21663045883179
+17:11:53 setGRValveMode: Opened GR Valve. Module 07 Current
+...      (before/300ms after opening): 177 176
+17:11:53 setGRValveMode: Changing GR-ValveMode to 1
+17:11:53 saveGREvacuation: Finished with evacuating GR
+17:11:53 restorePumpingMode: Finished with restoring mode OP_PUMPING
+17:11:53 Finished, Exception was: Script TERMINATED by USER
+Log End: 04.06.2015 17:25:30
+\end{verbatim}
+\end{small}
