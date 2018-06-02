@@ -463,15 +463,15 @@
 \def\ext@table{lof}
 \def\fnum@table{\tablename~\thetable}
 
-%  4.3.4 - 4.1.14 Приложения
+%  4.3.4 - 4.1.14 Приложения :BE CAREFUL! HARDCODE
 \renewcommand\appendix{\par
- \setcounter{secnumdepth}{4}
+ \setcounter{secnumdepth}{-1}
+ \setcounter{section}{0}%
  \setcounter{chapter}{0}%
  \EqInChapter\PicInChapter\TableInChapter%
  \gdef\@chapapp{\appendixname}%
- \gdef\thechapter{\Asbuk{chapter}}%
- \renewcommand\Gost@ChapterStyle{\appendixname~\Gost@MainChapterStyle}%
- \setlength\Gost@ChapterIndent{0mm}%
+ \gdef\thesection{}
+ \gdef\thechapter{}%
 }
 
 % 4.5 Сноски
