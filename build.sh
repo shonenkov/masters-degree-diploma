@@ -6,7 +6,7 @@ GREP='grep ".*:[0-9]*:.*"' # показывает на выходе только
 # Файлы/Папки
 PDF_NAME='diploma.pdf'
 TEX='tex'
-IMG='tex/inc/img'
+IMG='tex/figures'
 MAINTEX='0-main'
 
 # Конвертация eps
