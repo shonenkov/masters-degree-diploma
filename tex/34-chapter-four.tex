@@ -147,7 +147,7 @@ CanvasJS - библиотека для языка программировани
 \item поддержка браузеров Chrome, Firefox, Safari, IE8+;
 \end{itemize}
 
-При создании веб-сервиса "Spectral~Analyzer~PK-4" использовались следующие версии библиотек:
+При создании веб-сервиса “Spectral~Analyzer~PK-4“ использовались следующие версии библиотек:
 \begin{itemize}
 \item django==2.0;
 \item psycopg2==2.7.1;
@@ -159,4 +159,145 @@ CanvasJS - библиотека для языка программировани
 \end{itemize}
 
 \section{Описание функционала}
+Используя описанный стек технологий был создан веб-сервис “Spectral~Analyzer~PK-4” версии 1.0.0.
+В данном разделе находится информация о том, как пользователь взаимодействует с сервисом данной версии, описание функционала
+и некоторые решения на программном уровне, которые показались автору интересными/полезными для прочтения.
+
+С точки зрения установки данного программного обеспечения все сильно упрощено~--~достаточно лишь открыть URI
+сервиса в своем браузере и начать работу. Таким образом пользователь освобождается от трудоемких операций по получению ПО
+и может пользоваться сервисом с любой точки мира, почти с любого устройства, имеющего совместимую версию браузера.
+
+Первое взаимодействие с пользователем начинается со страницы аутентификации (см.~рис.~\ref{sub:auth}). На данном
+этапе проходит проверка пользователя на наличие доступа к контенту: необходимо ввести почту и пароль, выданные разработчиками
+сервиса. На программном уровне пользователь имеет следующую ORM абстракцию:
+
+\begin{figure}[t]
+    \begin{center}
+         \subfloat[\label{sub:auth}]{
+           \includegraphics[width=0.35\textwidth]{figures/auth}
+         }
+         \hspace{0.05\columnwidth}
+         \subfloat[\label{sub:page_not_found}]{
+           \includegraphics[width=0.35\textwidth]{figures/page_not_found}
+         }
+         \caption{Страницы в веб-сервисе “Spectral~Analyzer~PK-4”.: \pt(a) аутентификации, \pt(b) отсутствие страницы.}
+         \label{fig:auth_and_page_not_found}
+    \end{center}
+\end{figure}
+
+\begin{lstlisting}[style=py]
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import UserManager
+from django.db import models
+
+class User(AbstractBaseUser):
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    institute = models.ForeignKey(Institute, models.DO_NOTHING)
+    objects = UserManager()
+    USERNAME_FIELD = "email"
+\end{lstlisting}
+У пользователя есть уникальная почта в системе, имя и фамилия, определена принадлежность к институту,
+а также базовые параметры: хешированный пароль и время последней аутентификации.
+
+На примере аутентификации разберем как происходят POST и GET запросы к удаленному веб-сервису, поскольку технически
+данный подход ничем не отличается от получения информации по спектрам. Запрос GET используется для получения
+содержимого указанного ресурса. С помощью метода GET можно также начать какой-либо процесс. Клиент может передавать
+параметры выполнения запроса в URI целевого ресурса после символа «?»:
+\begin{verbatim}
+GET /login?param1=value1&param2=value2 HTTP/1.1
+\end{verbatim}
+Таким образом браузер выступает в роли клиента и выполняет GET запрос на удаленный сервер, который уже понимает специфику
+HTTP протокола и предпринимает соответствующее действие. На примере аутентификации, при выполнении GET запроса должна
+отобразиться страница, где, собственно, можно пройти аутентификацию (см.~рис.~\ref{sub:auth}). Для выполнения ответа
+на данный запрос веб-сервис сверяет URL в соответствии со списком "urlpatterns":
+\begin{lstlisting}[style=py]
+from django.conf.urls import url
+from web.views import LoginView
+
+urlpatterns = [url(r"^login$", LoginView.as_view())]
+\end{lstlisting}
+Если нашлось совпадение URL по регулярному выражению, то выполняется действие, которое задается методом “get” класса LoginView:
+\begin{lstlisting}[style=py]
+from django.views.generic import View
+from django.http import JsonResponse
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, REDIRECT_FIELD_NAME
+
+from web.models import User
+
+class LoginView(View):
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect("/base")
+        return render(request, "web/login.html")
+
+    def post(self, request, redirect_field_name=REDIRECT_FIELD_NAME):
+        def error(error_text):
+            return JsonResponse({"error": error_text}, status=401)
+
+        redirect_to = request.POST.get(redirect_field_name, settings.LOGIN_REDIRECT_URL)
+        # Ensure the user-originating redirection url is safe.
+        if not is_safe_url(url=redirect_to, host=request.get_host()):
+            redirect_to = settings.LOGIN_REDIRECT_URL
+
+        if "email" not in request.POST:
+            return error("Email required")
+        if "password" not in request.POST:
+            return error("Password required")
+
+        email = request.POST["email"].strip().lower()
+        password = request.POST["password"]
+        try:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
+            return error("Invalid email")
+
+        user = authenticate(email=email, password=password)
+        if user is None:
+            return error("Invalid password")
+
+        login(request, user)
+        return JsonResponse({"redirect_url": redirect_to})
+\end{lstlisting}
+В методе “get” содержится логика, что если пользователь прошел аутентификацию, то не нужно требовать проходить ее еще раз,
+а необходимо перенаправить на основную страницу. В случае если аутентификация не пройдена, то необходимо отобразить
+html-страницу “web/login.html”.
+
+В случае с POST запросами все немного сложнее. Они применяются для передачи пользовательских данных заданному ресурсу.
+Логика с определением “команды для сервера” остается такой же, как и в GET запросе, но сам запрос отличается своей структурой:
+данные необходимо передавать в тело запроса. Поскольку передача пользовательских данных требует безопасности, то
+необходима защита. Например, в Джанго можно выставить требование на передачу CSRF-токена для любого POST-запроса.
+Что это значит? CSRF-токен является последовательностью символов, которая передается вместе с ответом на GET запрос,
+причем на каждый ответ сервер генерит новую последовательность, отличную от предыдущей. Если в POST запросе не был прислан
+CSRF-токен или присланный токен не совпадает со сгенерированным сервером, то сервер отклоняется действие. Таким образом, можно
+избежать межсайтовой подделки запроса и быть уверенными, что это реальный пользователь, а не злоумышленник.
+На стороне клиента для совершения POST запросов в данном веб-сервисе используются
+классические формы, после заполнения которых происходит POST-запрос, а также JQuery Ajax, если нет необходимости
+перезагружать страницу для обновления данных:
+\begin{lstlisting}[style=htmlcssjs]
+// Send data to the server
+$.ajax({
+    url: "/login",
+    method: "POST",
+    data: {
+        email: $("input#email").val(),
+        password: $("input#password").val(),
+        next: $("input[name=next]").val(),
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+    },
+    error: function(response) {
+        <some_action>
+    },
+    success: function(response) {
+        <some_action>
+    }
+});
+\end{lstlisting}
+Выполняя данный запрос, веб-сервис реагирует методом “post” класса “LoginView”, в котором содержится логика, что
+если почта или пароль отстутсвуют, или, если нет пользователя с данной почтой, или пароль не совпадает, то аутентификация не пройдена
+и надо это сообщить пользователю, а иначе перенаправить на основную страницу веб-сервиса.
 
