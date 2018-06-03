@@ -278,6 +278,13 @@
 для удобства записи выполнена замена
 \math{F^n_i}(\epsilon) = f^n(\epsilon) \cdot \sigma_i(\epsilon) \cdot \epsilon }$, где \math{i}$ обозначает природу сечения.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=15cm]{figures/fig13}
+  \caption{Графическое представление некоторых аппроксимаций сечений рассеяния для различных энергетических уровней.}
+  \label{fig:fig13}
+\end{figure}
+
 На языке разностной схемы граничные условия (\ref{eq:borders}) будут выглядить следующим образом:
 \begin{equation}
     \begin{cases}
@@ -303,6 +310,14 @@
 
 В данной работе использовались следующие аналитические аппроксимации для сечений элементарных процессов, полученные частично из
 \cite{Zobnin}, частично из последних трудов Зобнина~А.~В.:
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=15cm]{figures/fig14}
+  \caption{Зависимость расчетной функции распределения электронов от энергии и осевого электрического поля,
+  заданного параметрически для некоторых значений; также нанесено распределение Больцмана, которое использовалось в качестве
+  начального условия (\ref{eq:start_condition}).}
+  \label{fig:fig14}
+\end{figure}
 \begin{equation*}
     \sigma_t(\epsilon) = \begin{cases}
     \big{[}
@@ -314,12 +329,6 @@
     \big{[}2.56 + 0.57 \cdot \ln(0.02)\big{]} \cdot 10^{-16}, \epsilon \le 0
     \end{cases}
 \end{equation}
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=15cm]{figures/fig13}
-  \caption{Графическое представление некоторых аппроксимаций сечений рассеяния для различных энергетических уровней.}
-  \label{fig:fig13}
-\end{figure}
 \begin{equation*}
     \sigma_{16.62}(\epsilon) = \begin{cases}
     {2.742 \cdot 10^{-14} \over \epsilon^3} \cdot \sqrt{\epsilon - 16.6 \over \epsilon}, \epsilon > 16.62 \\
@@ -344,6 +353,23 @@
     0, \epsilon \le 16.85
     \end{cases}
 \end{equation}
+\begin{figure}[t]
+    \begin{center}
+         \subfloat[\label{sub:fig15a}]{
+           \includegraphics[width=0.49\textwidth]{figures/fig15a}
+         }
+         \subfloat[\label{sub:fig15b}]{
+           \includegraphics[width=0.49\textwidth]{figures/fig15b}
+         }
+         \caption{Зависимость расчетной функции распределения электронов от энергии и осевого электрического поля,
+                  заданного параметрически для некоторых значений, в логарифмическом масштабе:
+                  \pt(a) в диапазоне \math{1 \le \epsilon \le 15 }$~эВ, \pt(b) в диапазоне \math{10 \le \epsilon \le 30 }$~эВ;
+                  также нанесено распределение Больцмана, которое использовалось в качестве начального условия (\ref{eq:start_condition}).
+
+         }
+         \label{fig:fig15}
+    \end{center}
+\end{figure}
 \begin{equation*}
     \sigma_{18.38}(\epsilon) = \begin{cases}
     {2.024 \cdot 10^{-17} \over \epsilon + 11} \cdot \sqrt{\epsilon - 18.38 \over \epsilon}, \epsilon > 18.38 \\
@@ -387,14 +413,6 @@
     \end{cases}
 \end{equation}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=15cm]{figures/fig14}
-  \caption{Зависимость расчетной функции распределения электронов от энергии и осевого электрического поля,
-  заданного параметрически для некоторых значений; также нанесено распределение Больцмана, которое использовалось в качестве
-  начального условия (\ref{eq:start_condition}).}
-  \label{fig:fig14}
-\end{figure}
 
 Используя данные аппроксимации сечений, разностную схему, начальные и граничные условия (\ref{eq:razh_scheme}~--~\ref{eq:start_condition}),
 итерационные шаги \math{\Delta \epsilon = 0.1}$~эВ и \math{\Delta t \sqrt{2 \over m} = 0.0002 }$~с~\math{\cdot}$~г^{\math{-{1 \over 2}}}$,
@@ -407,20 +425,4 @@
 16~эВ. В обычном масштабе обнаружить на глаз поведение хвостовой части ФРЭ представляется невозможным (см.~рис~\ref{fig:fig14}):
 хвостовая часть распределения Больцмана, как и остальных посчитанных распределений, сливаются между собой. Поэтому удобнее
 всего перейти к логарифмическому масштабу ФРЭ (см.~рис~\ref{sub:fig15b}).
-\begin{figure}[t]
-    \begin{center}
-         \subfloat[\label{sub:fig15a}]{
-           \includegraphics[width=0.49\textwidth]{figures/fig15a}
-         }
-         \subfloat[\label{sub:fig15b}]{
-           \includegraphics[width=0.49\textwidth]{figures/fig15b}
-         }
-         \caption{Зависимость расчетной функции распределения электронов от энергии и осевого электрического поля,
-                  заданного параметрически для некоторых значений, в логарифмическом масштабе:
-                  \pt(a) в диапазоне \math{1 \le \epsilon \le 15 }$~эВ, \pt(b) в диапазоне \math{10 \le \epsilon \le 30 }$~эВ;
-                  также нанесено распределение Больцмана, которое использовалось в качестве начального условия (\ref{eq:start_condition}).
 
-         }
-         \label{fig:fig15}
-    \end{center}
-\end{figure}
