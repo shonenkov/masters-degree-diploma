@@ -147,9 +147,9 @@
 \newlength\GostBeforTitleSkip    \setlength\GostBeforTitleSkip    {3.2ex}%\GostAfterTitleSkip}
 \newlength\GostBeforNoTitleSkip  \setlength\GostBeforNoTitleSkip  {1.0ex}
 \newlength\GostHTitleSpace       \setlength\GostHTitleSpace       {2mm}
-\newlength\GostTitleIndent       \setlength\GostTitleIndent       {}
+\newlength\GostTitleIndent       \setlength\GostTitleIndent       {0mm}
 \newlength\Gost@ChapterIndent    \setlength\Gost@ChapterIndent    {\GostTitleIndent}
-\newlength\Gost@MainChapterIndent\setlength\Gost@MainChapterIndent{}
+\newlength\Gost@MainChapterIndent\setlength\Gost@MainChapterIndent{0mm}
 \newlength{\Gost@TitleDropSkip}
  \setlength\Gost@TitleDropSkip{\GostBetweenTitleSkip}
  \addtolength\Gost@TitleDropSkip{-\GostAfterTitleSkip}
@@ -160,8 +160,8 @@
 
 %  Раздел
 \newcounter{chapter}
-\renewcommand\chapternumber{\@arabic\c@chapter}
-\renewcommand\thechapter{\CYRG\cyrl\cyra\cyrv\cyra~\chapternumber}
+\newcommand\chapternumber{\@arabic\c@chapter}
+\renewcommand\thechapter{\CYRG\cyrl\cyra\cyrv\cyra~\chapternumber.}
 \newcommand\chapter{%
  \clearpage%
  \if@figuresonchapter%
@@ -502,8 +502,8 @@
 \newcommand\listoffigures{\chapter*{\listfigurename}\@starttoc{lof}}
 \newcommand\listoftables{\chapter*{\listtablename}\@starttoc{lot}}
 
-\newcommand{\l@chapter}{\@dottedtocline{1}{0mm}{4.64em}}
-\newcommand{\l@section}{\@dottedtocline{2}{10mm}{2.8em}}
+\newcommand{\l@chapter}{\@dottedtocline{1}{0mm}{4.1em}}
+\newcommand{\l@section}{\@dottedtocline{2}{4.1em}{1.8em}}
 \newcommand{\l@subsection}   {\@dottedtocline{3}{20mm}{4.0em}}
 \newcommand{\l@subsubsection}{\@dottedtocline{4}{30mm}{5.2em}}
 \newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
