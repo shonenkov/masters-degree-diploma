@@ -3,17 +3,17 @@
 
 \chapter{Приложение А}
 \label{app:app1}
-Пример записи блока (одного спектра) в эксперименте. Спектральный файл обычно содержит более 1000 таких блоков, которые
+Запись блока (одного спектра) в эксперименте. Спектральный файл обычно содержит более 1000 таких блоков, которые
 следуют друг за другом.
 
 \begin{small}
 \begin{verbatim}
-#########################################################################
+###############################################################################
 # PK4 EAC SW -- Spectrometer
-# started   2016-10-12'13:57:45.58 ~
-# HPC=7679703032397 / HPCFreq=1496280000 Hz => HPC uptime = 5132.530698 s
-# 2016-10-12'13:57:42.55; spectrometer commanded
-# 2016-10-12'13:57:45.58; spectrometer response received
+# started   2015-06-04'16:04:30.91 ~
+# HPC=36732096253512 / HPCFreq=1496290000 Hz => HPC uptime = 24548.781489 s
+# 2015-06-04'16:04:27.99; spectrometer commanded
+# 2015-06-04'16:04:30.91; spectrometer response received
 #--- spectrum ---
 # 65535; spectrum start marker
 #     0; data size flag
@@ -23,45 +23,45 @@
 # 12118; reserved value FPGA_ESV_LSW
 #     0; pixel mode
    0:     0
-   1:   471
-   2:   484
-   3:   466
-   4:   510
-   5:   506
-   6:   484
-   7:   451
-   8:   491
-   9:  1729
+   1:   423
+   2:   323
+   3:   346
+   4:   413
+   5:   387
+   6:   393
+   7:   368
+   8:   400
+   9:   488
 ………..
 ………..
-1022:   537
-1023:   623
-1024:   557
-1025:   493
-1026:   525
+1022:   479
+1023:   477
+1024:   470
+1025:   467
+1026:   445
 ………..
 ………..
-2038:   506
-2039:   578
-2040:   585
-2041:   548
-2042:   618
-2043:   546
-2044:   650
-2045:   549
-2046:   541
-2047:   516
+2038:   422
+2039:   483
+2040:   447
+2041:   401
+2042:   435
+2043:   424
+2044:   560
+2045:   429
+2046:   473
+2047:   424
 # 65533; spectrum end marker
-#=== spectrum === read-out time = 2.172 s
-# ended     2016-10-12'13:57:45.63 ~ (execution time = 0.051892 s)
+#=== spectrum === read-out time = 2.071 s
+# ended     2015-06-04'16:04:30.95 ~   (execution time = 0.031643 s)
 # PK4 EAC SW -- Spectrometer
-#########################################################################
+###############################################################################
 \end{verbatim}
 \end{small}
 
 \chapter{Приложение Б}
 \label{app:app2}
-Пример записей логгера в эксперименте.
+Записи логгера в эксперименте.
 
 \begin{small}
 \begin{verbatim}
@@ -75,40 +75,84 @@ Log Start: 04.06.2015 13:52:47
 ...      is operative
 13:56:31 M01_temperature_cm01 measured 27.100 expected 30 abs-diff 2.900
 ...      ranges -20 +20 all [°C] result: ok
-13:56:31 M01_Vin_M02_off measured 23.975 expected 24 abs-diff 0.025
-...      ranges -2 +1.5 all [V] result: ok
-13:56:32 M01_Vout_M02_off measured 0.000 expected 0 abs-diff 0.000
-...      ranges -0 +0.1 all [V] result: ok
-13:56:32 M01_current_M02_off measured 0.001 expected 0.002 abs-diff 0.001
-...      ranges -0.002 +0.002 all [A] result: ok
-13:56:32 M01_Vin_M03_off measured 23.950 expected 24 abs-diff 0.050 ranges
-...      -2 +1.5 all [V] result: ok
-13:56:32 M01_Vout_M03_off measured 0.000 expected 0 abs-diff 0.000 ranges
-...      -0 +0.1 all [V] result: ok
-13:56:32 M01_current_M03_off measured 0.001 expected 0.002 abs-diff 0.001
-...      ranges -0.002 +0.002 all [A] result: ok
-13:56:32 M01_Vin_M04_off measured 23.975 expected 24 abs-diff 0.025 ranges
-...      -2 +1.5 all [V] result: ok
 ………..
 ………..
-15:25:04 TrapAndManipulate : begin flushing
-15:25:04 setFlushing: Flushing with 10sccm for 10 seconds
-15:25:04 setIQF200GasFlow: Changing IQF200 Gasflow to 10sccm.
-15:25:04 setIQF200ValveMode: Changing ValveMode to 2
-15:25:14 setIQF200GasFlow: Changing IQF200 Gasflow
-...      to 0.0231250002980232sccm.
-15:25:14 setIQF200ValveMode: Changing ValveMode to 2
-15:25:14 TrapAndManipulate : end flushing
-15:25:14 TrapAndManipulate : standby with gasflow 0.5 sccm for 10 s
-15:25:14 setIQF200GasFlow: Changing IQF200 Gasflow to 0.5sccm.
-15:25:14 setIQF200ValveMode: Changing ValveMode to 2
-15:25:26 *** end trapping ***
-15:25:26 *** GasJet 3 Dispenser setting cycle 6 ***
-15:25:26 setIQP600Pressure: old IQP600 pressure is 300mbar.
-...      Trying to set 300mbar
-15:25:26 setGRValveMode : duration for sending open command:
-...      5.01350212097168
-15:25:26 setGRValveMode: Changing GR-ValveMode to 0
+16:00:25 TrapAndManipulate: +++ Polarity Switching Current Ramp, Cycle 3:
+...      curr = 3 mA +++
+16:00:25 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=3 DutyCycle=0.5 Freq=500
+16:00:35 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 0:
+...      DutyCycle = 50 +++
+16:00:36 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.5 Freq=500
+16:00:46 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 1:
+...      DutyCycle = 40 +++
+16:00:46 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.4 Freq=500
+16:00:57 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 2:
+...      DutyCycle = 60 +++
+16:00:57 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.6 Freq=500
+16:01:07 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 3:
+...      DutyCycle = 20 +++
+16:01:08 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.2 Freq=500
+16:01:11 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 4:
+...      DutyCycle = 80 +++
+16:01:11 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.8 Freq=500
+16:01:15 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 5:
+...      DutyCycle = 10 +++
+16:01:15 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+ ...      Plasma: Current=1 DutyCycle=0.1 Freq=500
+16:01:18 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 6:
+...      DutyCycle = 90 +++
+16:01:18 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.9 Freq=500
+16:01:21 TrapAndManipulate: +++ Duty Cycle Variation, Cycle 7:
+...      DutyCycle = 50 +++
+16:01:21 setChangePolaritySwitchedPlasma: Changing Polarity Switched DC
+...      Plasma: Current=1 DutyCycle=0.5 Freq=500
+16:01:31 TrapAndManipulate : begin flushing
+16:01:31 setFlushing: Flushing with 10sccm for 10 seconds
+16:01:31 setIQF200GasFlow: Changing IQF200 Gasflow to 10sccm.
+16:01:31 setIQF200ValveMode: Changing ValveMode to 2
+16:01:41 setIQF200GasFlow: Changing IQF200 Gasflow to
+...      0.0356249995529652sccm.
+16:01:41 setIQF200ValveMode: Changing ValveMode to 2
+16:01:41 TrapAndManipulate : end flushing
+16:01:41 TrapAndManipulate : standby with gasflow 0.5 sccm for 10 s
+16:01:41 setIQF200GasFlow: Changing IQF200 Gasflow to 0.5sccm.
+16:01:41 setIQF200ValveMode: Changing ValveMode to 2
+16:01:53 *** end trapping ***
+16:01:53 main: *** Shaker 5 Dispenser setting cycle 1 ***
+16:04:25 *** begin trapping in Neon ***
+16:04:27 TrapAndManipulate : standby with gasflow 0.5 sccm for 10 s
+16:04:27 setIQF200GasFlow: Changing IQF200 Gasflow to 0.5sccm.
+16:04:27 setIQF200ValveMode: Changing ValveMode to 2
+16:04:37 TrapAndManipulate : begin particle trapping
+16:04:40 setMoveCamTo: Moving Cameras and PO Laser to Position=15
+...      Axis=Y_AXIS
+16:04:40 setPOLaserVelocity: Setting PO Laser Velocity 1
+16:04:41 setMoveCamTo: Moving Cameras and PO Laser to Position=100
+...      Axis=X_AXIS
+16:04:41 setPOLaserVelocity: Setting PO Laser Velocity 5
+16:04:43 setIQF200GasFlow: Changing IQF200 Gasflow to 0sccm.
+16:04:43 setIQF200ValveMode: Changing ValveMode to 2
+16:04:43 setPureDCPlasma: Starting Pure DC Discharge: DC-Current=1
+16:04:43 setEnableElectrode: Waiting 2s for electrode 0 to activate
+16:04:44 setBasicVoltage: Setting/Reducing HV BasicVoltage to 2.0kV
+16:04:44 setBasicVoltage: Setting/Reducing HV BasicVoltage to 1.5kV
+16:04:49 setDispStatus: Injecting Particles with Dispenser=5 using
+...      actual shaking values
+16:04:50 setGRValveMode : duration for sending open command:
+...      3.87283492088318
+16:04:50 setGRValveMode: Changing GR-ValveMode to 0
+16:05:02 setChangePolaritySwitchedPlasma: Changing Polarity Switched
+...      DC Plasma: Current=1 DutyCycle=0.5 Freq=500
+16:05:02 TrapAndManipulate : end particle trapping
+16:08:25 TrapAndManipulate: +++ Polarity Switching Current Ramp,
+...      Cycle 0: curr = 0.5 mA +++
 ………..
 ………..
 17:11:51 saveChamberEvacuation: Finished with evacuating Chamber
@@ -123,3 +167,37 @@ Log Start: 04.06.2015 13:52:47
 Log End: 04.06.2015 17:25:30
 \end{verbatim}
 \end{small}
+
+\chapter{Приложение В}
+\label{app:app1}
+Ключевые характеристики наблюдаемых атомарных линий неона в положительном столбе газового разряда постоянного тока
+как в возмущенном, так и не в возмущенном пылевым облаком:\\[5mm]
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$\lambda$, нм & $E_2$, эВ & $I$, отн.ед.      & $I_{cloud}$, отн.ед. &  $I_{cloud} / I$              \\
+\hline
+588.190       & 18.72     & $ 860 \pm 30   $  & $1120 \pm 14   $     &  $1.30 \pm 0.05  $ \\
+594.483       & 18.70     & $ 2840 \pm 43  $  & $3925 \pm 50   $     &  $1.38 \pm 0.03  $ \\
+603.000       & 18.72     & $ 701 \pm 19   $  & $963 \pm 8     $     &  $1.37 \pm 0.04  $ \\
+607.434       & 18.71     & $ 3082 \pm 52  $  & $4186 \pm 25   $     &  $1.358 \pm 0.025$ \\
+609.616       & 18.70     & $ 4091 \pm 49  $  & $5750 \pm 60   $     &  $1.406 \pm 0.022$ \\
+614.306       & 18.63     & $ 8090 \pm 130 $  & $11126 \pm 51  $     &  $1.375 \pm 0.023$ \\
+621.728       & 18.61     & $ 713 \pm 18   $  & $1048 \pm 20   $     &  $1.470 \pm 0.046$ \\
+626.650       & 18.69     & $ 2665 \pm 35  $  & $3750 \pm 50   $     &  $1.406 \pm 0.028$ \\
+630.479       & 18.63     & $ 978 \pm 14   $  & $1400 \pm 25   $     &  $1.430 \pm 0.032$ \\
+633.443       & 18.57     & $ 3360 \pm 40  $  & $4770 \pm 60   $     &  $1.420 \pm 0.025$ \\
+638.299       & 18.61     & $ 2450 \pm 40  $  & $3375 \pm 70   $     &  $1.378 \pm 0.036$ \\
+640.225       & 18.55     & $ 9300 \pm 120 $  & $12950 \pm 100 $     &  $1.393 \pm 0.021$ \\
+650.653       & 18.57     & $ 5130 \pm 75  $  & $7200 \pm 55   $     &  $1.404 \pm 0.023$ \\
+653.288       & 18.61     & $ 628 \pm 16   $  & $865 \pm 17    $     &  $1.376 \pm 0.044$ \\
+659.895       & 18.72     & $ 2037 \pm 20  $  & $2816 \pm 44   $     &  $1.383 \pm 0.026$ \\
+667.828       & 18.70     & $ 4090 \pm 55  $  & $5632 \pm 86   $     &  $1.377 \pm 0.028$ \\
+671.704       & 18.69     & $ 1790 \pm 40  $  & $2430 \pm 60   $     &  $1.357 \pm 0.045$ \\
+692.947       & 18.63     & $ 2820 \pm 30  $  & $3905 \pm 50   $     &  $1.385 \pm 0.022$ \\
+703.241       & 18.38     & $ 3000 \pm 30  $  & $4100 \pm 60   $     &  $1.365 \pm 0.024$ \\
+576.442       & 20.70     & $ 332 \pm 7    $  & $508 \pm 23    $     &  $1.52 \pm 0.08  $ \\
+748.887       & 20.04     & $ 145  \pm 5   $  & $240 \pm 14    $     &  $1.66 \pm 0.11  $ \\
+753.577       & 20.02     & $ 147 \pm 14   $  & $246.4 \pm 2.8 $     &  $1.68 \pm 0.16  $ \\
+\hline
+\end{tabular}
